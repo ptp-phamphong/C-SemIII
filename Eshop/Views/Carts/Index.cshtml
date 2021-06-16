@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Eshop.Models.Cart>
+
+@{
+    ViewData["Title"] = "Index";
+    Int32 Sum = 0;
+}
+
+<h1>Cart</h1>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Price)
+            </th>
+            <th>Amount</th>
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model != null)
+    {
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Account.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                    <td>
+                        @{ //Xử lý tính tổng tiền
+                            Int32 a = item.Product.Price * item.Quantity;
+                            Sum += a;
+                        }
+                        @a.ToString()
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>Sum</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@Sum.ToString()</td>
+            </tr>
+        </tbody>
+    }
+    @if(Model == null)
+    {
+        <h1>@ViewBag.Error</h1>
+    }
+
+
+
+</table>
+
+
+<!--Xử lý xóa giỏ hàng-->
+<a asp-action="DeleteAll">Delete All Because you don't have money</a>
+<br /><br /><br />
+
+
+<!--Xử lý thanh toán-->
+<form asp-action="Payment">
+    <input type="hidden" name="Sum" value="@Sum" />
+    <button type="submit" class="btn-group-sm"> Payment right now bro....</button>
+
+</form>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Eshop.Models.Product>
+
+@{
+    ViewData["Title"] = "ProductList";
+}
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Awesome Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+</head>
+
+<body>
+
+   
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" asp-action="Index" asp-route-id="-1">Tất cả sản phẩm</a>
+            @foreach (ProductType type in ViewBag.listType)
+            {
+                <a class="dropdown-item" asp-action="Index" asp-route-id="@type.Id">@type.Name</a>
+            }
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="card-columns">
+        @foreach (var item in Model)
+        {
+            <div class=card>
+                <div class="card-header" style="height: 100px;"><h3><a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a></h3></div>
+                <div class="card-body" style="height: 400px;">
+                    <a asp-action="Details" asp-route-id="@item.Id"><img src="~/image/Products/@Html.DisplayFor(modelItem => item.Image)" width="100%" height="100%" /></a>
+                </div>
+                <div class="card-footer">
+                    <span class="text-muted">@Html.DisplayFor(modelItem => item.Price) VND</span>
+                    <form asp-controller="Carts" asp-action="Add" method="post">
+                        <input type="hidden" name="quantity" value="1" />
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <button class="btn btn-secondary btn-sm float-right">
+                            Add to Cart
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</body>

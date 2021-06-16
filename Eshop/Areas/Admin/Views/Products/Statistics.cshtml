@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Eshop.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Top 3 Products Stock</h1>
+@if (ViewBag.finalResult1 != null)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.finalResult1)
+        {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.Stock
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+
+
+
+<h1>Top 3 Products Was Sold in Time</h1>
+<form asp-controller="Products" asp-action="Statistics" asp-area="Admin" method="post">
+    Begin:   <input type="date" name="begin" value="@DateTime.MinValue" /><br />
+    end:    <input type="date" name="end" value="@DateTime.Now" /><br />
+    <button type ="submit" class="btn-group-toggle">Confirm</button>
+</form>
+
+@if (ViewBag.finalResult != null)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                Total Was Sold
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.finalResult)
+        {
+            <tr>
+                <td>
+                    @item.Key.Name
+                </td>
+                <td>
+                    @item.Key.Price
+                </td>
+                <td>
+                    @item.Value
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

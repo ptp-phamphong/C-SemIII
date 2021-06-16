@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Eshop.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Top Customer Buy</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                Total was buy
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.finalResult)
+        {
+        <tr>
+            <td>
+                @item.Key.Username
+            </td>
+            <td>
+                @item.Value
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<h2><a asp-controller="Accounts" asp-action="Statistics" asp-area="Admin"> Test asda adad</a></h2>

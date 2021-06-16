@@ -1,0 +1,60 @@
+﻿@model Eshop.Models.Account
+
+@{ 
+    ViewData["Tittle"] = "Register";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <h1>@ViewBag.ErrorRegister</h1>
+    <form asp-action="Register" class="form-horizontal" role="form">
+        <h2>Registration</h2>
+        <div class="form-group">
+            <label asp-for="Username" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <input asp-for="Username" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <input asp-for="Password" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <input asp-for="Email" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <input asp-for="Phone" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <input asp-for="Address" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FullName" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <input asp-for="FullName" class="form-control" autofocus>
+            </div>
+        </div>
+        
+         <!-- /.form-group -->
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+    </form> <!-- /form -->
+</div> <!-- ./container -->

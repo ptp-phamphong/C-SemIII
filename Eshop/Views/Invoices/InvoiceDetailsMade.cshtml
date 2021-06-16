@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Eshop.Models.InvoiceDetail>
+
+@{
+    ViewData["Title"] = "InvoiceDetail";
+}
+
+<h1>Invoice Details</h1>
+<h2>Issulate Date: @Model.ToList()[0].Invoice.IssuedDate.Date</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Price)
+            </th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @{
+                    int Ammount = item.Product.Price * item.Quantity;
+                }
+                @Ammount.ToString()
+            </td>
+        </tr>
+        }
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td>@Model.ToList()[0].Invoice.Total</td>
+        </tr>
+    </tbody>
+</table>
